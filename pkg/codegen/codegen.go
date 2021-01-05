@@ -407,6 +407,7 @@ func GenerateTypesForRequestBodies(t *template.Template, bodies map[string]*open
 
 	for _, bodyName := range SortedRequestBodyKeys(bodies) {
 		bodyOrRef := bodies[bodyName]
+		bodyName += "RequestBody"
 
 		// As for responses, we will only generate Go code for JSON bodies,
 		// the other body formats are up to the user.

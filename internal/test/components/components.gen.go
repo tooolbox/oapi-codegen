@@ -78,8 +78,8 @@ type ResponseObject struct {
 	Field SchemaObject `json:"Field"`
 }
 
-// RequestBody defines model for RequestBody.
-type RequestBody struct {
+// RequestBodyRequestBody defines model for RequestBodyRequestBody.
+type RequestBodyRequestBody struct {
 	Field SchemaObject `json:"Field"`
 }
 
@@ -1045,20 +1045,20 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// EnsureEverythingIsReferenced request  with any body
-	EnsureEverythingIsReferencedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*EnsureEverythingIsReferencedResponse, error)
+	EnsureEverythingIsReferencedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*EnsureEverythingIsReferencedRzp, error)
 
-	EnsureEverythingIsReferencedWithResponse(ctx context.Context, body EnsureEverythingIsReferencedJSONRequestBody) (*EnsureEverythingIsReferencedResponse, error)
+	EnsureEverythingIsReferencedWithResponse(ctx context.Context, body EnsureEverythingIsReferencedJSONRequestBody) (*EnsureEverythingIsReferencedRzp, error)
 
 	// ParamsWithAddProps request
-	ParamsWithAddPropsWithResponse(ctx context.Context, params *ParamsWithAddPropsParams) (*ParamsWithAddPropsResponse, error)
+	ParamsWithAddPropsWithResponse(ctx context.Context, params *ParamsWithAddPropsParams) (*ParamsWithAddPropsRzp, error)
 
 	// BodyWithAddProps request  with any body
-	BodyWithAddPropsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*BodyWithAddPropsResponse, error)
+	BodyWithAddPropsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*BodyWithAddPropsRzp, error)
 
-	BodyWithAddPropsWithResponse(ctx context.Context, body BodyWithAddPropsJSONRequestBody) (*BodyWithAddPropsResponse, error)
+	BodyWithAddPropsWithResponse(ctx context.Context, body BodyWithAddPropsJSONRequestBody) (*BodyWithAddPropsRzp, error)
 }
 
-type EnsureEverythingIsReferencedResponse struct {
+type EnsureEverythingIsReferencedRzp struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -1085,7 +1085,7 @@ type EnsureEverythingIsReferencedResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r EnsureEverythingIsReferencedResponse) Status() string {
+func (r EnsureEverythingIsReferencedRzp) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -1093,20 +1093,20 @@ func (r EnsureEverythingIsReferencedResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnsureEverythingIsReferencedResponse) StatusCode() int {
+func (r EnsureEverythingIsReferencedRzp) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type ParamsWithAddPropsResponse struct {
+type ParamsWithAddPropsRzp struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r ParamsWithAddPropsResponse) Status() string {
+func (r ParamsWithAddPropsRzp) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -1114,20 +1114,20 @@ func (r ParamsWithAddPropsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ParamsWithAddPropsResponse) StatusCode() int {
+func (r ParamsWithAddPropsRzp) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type BodyWithAddPropsResponse struct {
+type BodyWithAddPropsRzp struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r BodyWithAddPropsResponse) Status() string {
+func (r BodyWithAddPropsRzp) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -1135,65 +1135,65 @@ func (r BodyWithAddPropsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r BodyWithAddPropsResponse) StatusCode() int {
+func (r BodyWithAddPropsRzp) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-// EnsureEverythingIsReferencedWithBodyWithResponse request with arbitrary body returning *EnsureEverythingIsReferencedResponse
-func (c *ClientWithResponses) EnsureEverythingIsReferencedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*EnsureEverythingIsReferencedResponse, error) {
+// EnsureEverythingIsReferencedWithBodyWithResponse request with arbitrary body returning *EnsureEverythingIsReferencedRzp
+func (c *ClientWithResponses) EnsureEverythingIsReferencedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*EnsureEverythingIsReferencedRzp, error) {
 	rsp, err := c.EnsureEverythingIsReferencedWithBody(ctx, contentType, body)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnsureEverythingIsReferencedResponse(rsp)
+	return ParseEnsureEverythingIsReferencedRzp(rsp)
 }
 
-func (c *ClientWithResponses) EnsureEverythingIsReferencedWithResponse(ctx context.Context, body EnsureEverythingIsReferencedJSONRequestBody) (*EnsureEverythingIsReferencedResponse, error) {
+func (c *ClientWithResponses) EnsureEverythingIsReferencedWithResponse(ctx context.Context, body EnsureEverythingIsReferencedJSONRequestBody) (*EnsureEverythingIsReferencedRzp, error) {
 	rsp, err := c.EnsureEverythingIsReferenced(ctx, body)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnsureEverythingIsReferencedResponse(rsp)
+	return ParseEnsureEverythingIsReferencedRzp(rsp)
 }
 
-// ParamsWithAddPropsWithResponse request returning *ParamsWithAddPropsResponse
-func (c *ClientWithResponses) ParamsWithAddPropsWithResponse(ctx context.Context, params *ParamsWithAddPropsParams) (*ParamsWithAddPropsResponse, error) {
+// ParamsWithAddPropsWithResponse request returning *ParamsWithAddPropsRzp
+func (c *ClientWithResponses) ParamsWithAddPropsWithResponse(ctx context.Context, params *ParamsWithAddPropsParams) (*ParamsWithAddPropsRzp, error) {
 	rsp, err := c.ParamsWithAddProps(ctx, params)
 	if err != nil {
 		return nil, err
 	}
-	return ParseParamsWithAddPropsResponse(rsp)
+	return ParseParamsWithAddPropsRzp(rsp)
 }
 
-// BodyWithAddPropsWithBodyWithResponse request with arbitrary body returning *BodyWithAddPropsResponse
-func (c *ClientWithResponses) BodyWithAddPropsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*BodyWithAddPropsResponse, error) {
+// BodyWithAddPropsWithBodyWithResponse request with arbitrary body returning *BodyWithAddPropsRzp
+func (c *ClientWithResponses) BodyWithAddPropsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader) (*BodyWithAddPropsRzp, error) {
 	rsp, err := c.BodyWithAddPropsWithBody(ctx, contentType, body)
 	if err != nil {
 		return nil, err
 	}
-	return ParseBodyWithAddPropsResponse(rsp)
+	return ParseBodyWithAddPropsRzp(rsp)
 }
 
-func (c *ClientWithResponses) BodyWithAddPropsWithResponse(ctx context.Context, body BodyWithAddPropsJSONRequestBody) (*BodyWithAddPropsResponse, error) {
+func (c *ClientWithResponses) BodyWithAddPropsWithResponse(ctx context.Context, body BodyWithAddPropsJSONRequestBody) (*BodyWithAddPropsRzp, error) {
 	rsp, err := c.BodyWithAddProps(ctx, body)
 	if err != nil {
 		return nil, err
 	}
-	return ParseBodyWithAddPropsResponse(rsp)
+	return ParseBodyWithAddPropsRzp(rsp)
 }
 
-// ParseEnsureEverythingIsReferencedResponse parses an HTTP response from a EnsureEverythingIsReferencedWithResponse call
-func ParseEnsureEverythingIsReferencedResponse(rsp *http.Response) (*EnsureEverythingIsReferencedResponse, error) {
+// ParseEnsureEverythingIsReferencedRzp parses an HTTP response from a EnsureEverythingIsReferencedWithResponse call
+func ParseEnsureEverythingIsReferencedRzp(rsp *http.Response) (*EnsureEverythingIsReferencedRzp, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnsureEverythingIsReferencedResponse{
+	response := &EnsureEverythingIsReferencedRzp{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -1240,15 +1240,15 @@ func ParseEnsureEverythingIsReferencedResponse(rsp *http.Response) (*EnsureEvery
 	return response, nil
 }
 
-// ParseParamsWithAddPropsResponse parses an HTTP response from a ParamsWithAddPropsWithResponse call
-func ParseParamsWithAddPropsResponse(rsp *http.Response) (*ParamsWithAddPropsResponse, error) {
+// ParseParamsWithAddPropsRzp parses an HTTP response from a ParamsWithAddPropsWithResponse call
+func ParseParamsWithAddPropsRzp(rsp *http.Response) (*ParamsWithAddPropsRzp, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ParamsWithAddPropsResponse{
+	response := &ParamsWithAddPropsRzp{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -1259,15 +1259,15 @@ func ParseParamsWithAddPropsResponse(rsp *http.Response) (*ParamsWithAddPropsRes
 	return response, nil
 }
 
-// ParseBodyWithAddPropsResponse parses an HTTP response from a BodyWithAddPropsWithResponse call
-func ParseBodyWithAddPropsResponse(rsp *http.Response) (*BodyWithAddPropsResponse, error) {
+// ParseBodyWithAddPropsRzp parses an HTTP response from a BodyWithAddPropsWithResponse call
+func ParseBodyWithAddPropsRzp(rsp *http.Response) (*BodyWithAddPropsRzp, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &BodyWithAddPropsResponse{
+	response := &BodyWithAddPropsRzp{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
